@@ -95,7 +95,7 @@ exports.onPostBuild = function (pages) {
         )
       })
       uploader.on('end', function () {
-        console.log(`Content uploaded to S3 [${'.'.repeat(100)}] 100%`)
+        console.log(`Content uploaded to S3 [${'='.repeat(100)}] 100%`)
         resolve()
       })
     } else {
