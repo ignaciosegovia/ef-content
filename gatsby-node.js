@@ -7,29 +7,30 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
-    resolve(
-      graphql(
-        `
-          {
-            allContentfulBlogPost {
-              edges {
-                node {
-                  title
-                  slug
-                }
+    graphql(
+      `
+        {
+          allContentfulBlogPost {
+            edges {
+              node {
+                title
+                slug
               }
             }
           }
-        `
-      ).then((result) => {
+        }
+      `
+    )
+      .then((result) => {
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
         }
 
         const posts = result.data.allContentfulBlogPost.edges
+
         posts.forEach((post, index) => {
-          createPage({
+          const a = createPage({
             path: `/blog/${post.node.slug}/`,
             component: blogPost,
             context: {
@@ -37,8 +38,12 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
+        resolve()
       })
-    )
+      .catch((e) => {
+        console.log(e)
+        reject(e)
+      })
   })
 }
 
@@ -72,22 +77,25 @@ exports.onPostBuild = function (pages) {
         },
       }
       var uploader = client.uploadDir(params)
-      console.log(`Start uploading to S3`)
       uploader.on('error', function (err) {
         console.error('unable to sync:', err.stack)
         reject(err)
       })
       uploader.on('progress', function (p) {
-        console.log(
-          `Uploading status: ${
-            (parseInt(uploader.progressAmount) /
-              parseInt(uploader.progressTotal)) *
+        const iterator = parseInt(
+          (parseInt(uploader.progressMd5Amount) /
+            parseInt(uploader.progressMd5Total)) *
             100
-          }% (${uploader.progressAmount} of ${uploader.progressTotal} files)`
+        )
+        const dots = '='.repeat(iterator)
+        const left = 100 - (iterator > 0 ? iterator : 0)
+        const empty = ' '.repeat(left)
+        process.stdout.write(
+          `\rUploading constent to S3 [${dots}${empty}] ${iterator}%`
         )
       })
       uploader.on('end', function () {
-        console.log('done uploading')
+        console.log(`Content uploaded to S3 [${'.'.repeat(100)}] 100%`)
         resolve()
       })
     } else {
