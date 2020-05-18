@@ -10,7 +10,7 @@ class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
+    const [author] = get(this, 'props.data.allContentfulLifeEvent.edges')
 
     return (
       <Layout location={this.props.location}>
@@ -64,15 +64,12 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulPerson(
+    allContentfulLifeEvent(
       filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
     ) {
       edges {
         node {
           name
-          shortBio {
-            shortBio
-          }
           title
           heroImage: image {
             fluid(
