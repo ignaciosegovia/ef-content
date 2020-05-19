@@ -35,8 +35,8 @@ class RootIndex extends React.Component {
   }
 }
 
-export default RootIndex
 
+export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery {
