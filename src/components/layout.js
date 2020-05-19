@@ -14,9 +14,10 @@ class Template extends React.Component {
       rootPath = __PATH_PREFIX__ + `/`
     }
 
+    let removedContent = <Navigation />;
+
     return (
       <Container>
-        <Navigation />
         {children}
       </Container>
     )

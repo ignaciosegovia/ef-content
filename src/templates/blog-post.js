@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
@@ -9,34 +10,25 @@ import heroStyles from '../components/hero.module.css'
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
+    const lifeEvent = get(this.props, 'data.allContentfulLifeEvent.nodes[0]')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          <Helmet title={`${post.title} | ${siteTitle}`} />
-          <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
-              alt={post.title}
-              fluid={post.heroImage.fluid}
-            />
-          </div>
+          <Helmet title={`${lifeEvent.title} | ${siteTitle}`} />
           <div className="wrapper">
-            <h1 className="section-headline">{post.title}</h1>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              {post.publishDate}
-            </p>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: post.body.childMarkdownRemark.html,
-              }}
-            />
+            <h1 className="section-headline">{lifeEvent.name}</h1>
+            <h3>
+              <Link to={`/blog/${lifeEvent.id}/lowdown`}>
+                Low Down
+              </Link>
+            </h3>
+            <h3>
+              <Link to={`/blog/${lifeEvent.id}/nittygritty`}>
+                Nitty Gritty
+              </Link>
+            </h3>
           </div>
         </div>
       </Layout>
@@ -47,23 +39,45 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query LifeEventByID($id: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    contentfulBlogPost(slug: { eq: $slug }) {
-      title
-      publishDate(formatString: "MMMM Do, YYYY")
-      heroImage {
-        fluid(maxWidth: 1180, background: "rgb:000000") {
-          ...GatsbyContentfulFluid_tracedSVG
+    allContentfulLifeEvent(filter: { id: { eq: $id } }) {
+      nodes {
+        name
+        createdAt
+        contentful_id
+        id
+        icon {
+          contentful_id
+          id
+          file {
+            url
+          }
         }
-      }
-      body {
-        childMarkdownRemark {
-          html
+        image {
+          contentful_id
+          id
+          file {
+            url
+          }
+        }
+        lowDown {
+          body {
+            body
+            id
+          }
+          slug
+        }
+        nittyGritty {
+          body {
+            body
+            id
+          }
+          slug
         }
       }
     }

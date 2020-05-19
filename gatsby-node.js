@@ -6,18 +6,46 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
+    const lifeEvent = path.resolve('./src/templates/blog-post.js')
     graphql(
       `
         {
-          allContentfulBlogPost {
-            edges {
-              node {
-                title
-                slug
-              }
-            }
+          allContentfulLifeEvent {
+      nodes {
+        name
+        createdAt
+        contentful_id
+        id
+        icon {
+          contentful_id
+          id
+          file {
+            url
           }
+        }
+        image {
+          contentful_id
+          id
+          file {
+            url
+          }
+        }
+        lowDown {
+          body {
+            body
+            id
+          }
+          slug
+        }
+        nittyGritty {
+          body {
+            body
+            id
+          }
+          slug
+        }
+      }
+    }
         }
       `
     )
@@ -27,16 +55,36 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
-        const posts = result.data.allContentfulBlogPost.edges
+        const lowDown = path.resolve('./src/templates/low-down.js')
+        const nittyGritty = path.resolve('./src/templates/nitty-gritty.js')
 
-        posts.forEach((post, index) => {
+        const lifeEvents = result.data.allContentfulLifeEvent.nodes
+
+        lifeEvents.forEach((le, index) => {
           const a = createPage({
-            path: `/blog/${post.node.slug}/`,
-            component: blogPost,
+            path: `/blog/${le.id}/`,
+            component: lifeEvent,
             context: {
-              slug: post.node.slug,
+              id: le.id,
             },
           })
+
+          const b = createPage({
+            path: `/blog/${le.id}/lowdown`,
+            component: lowDown,
+            context: {
+              id: le.id,
+            },
+          })
+
+          const c = createPage({
+            path: `/blog/${le.id}/nittygritty`,
+            component: nittyGritty,
+            context: {
+              id: le.id,
+            },
+          })
+
         })
         resolve()
       })
