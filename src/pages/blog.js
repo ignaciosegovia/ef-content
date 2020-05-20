@@ -8,7 +8,7 @@ import ArticlePreview from '../components/article-preview'
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    /*const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     //const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
     return (
@@ -29,8 +29,9 @@ class BlogIndex extends React.Component {
             </ul>
           </div>
         </div>
-      </Layout>
-    )
+      </Layout> 
+    )*/
+    return null
   }
 }
 
