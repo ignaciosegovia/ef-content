@@ -15,13 +15,6 @@ class LowDownTemplate extends React.Component {
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          {!isMobile && <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
-              alt="Header"
-              fluid={lifeEvent.image.file.url}
-            />
-          </div>}
           {lifeEvent.lowDown.map((data) => {
             if (isMobile) {
               return (

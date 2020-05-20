@@ -61,7 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
         const lifeEvents = result.data.allContentfulLifeEvent.nodes
 
         lifeEvents.forEach((le, index) => {
-          if (le.lowDown !== null && le.nittyGritty !== null && le.image !== null) {
+          if (le.lowDown !== null && le.nittyGritty !== null) {
             const a = createPage({
               path: `/blog/${le.id}/`,
               component: lifeEvent,
