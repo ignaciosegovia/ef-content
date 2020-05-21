@@ -35,7 +35,7 @@ class NittyGrittyTemplate extends React.Component {
             } else {
               return (
                 <>
-                  <div className="wrapper" style={{padding: '0'}}>
+                  <div className="wrapper" style={{padding: '0', backgroundColor: '#F8FAFF', margin: '0', width: '100%'}}>
                     <div
                       dangerouslySetInnerHTML={{
                         __html: data.body.childMarkdownRemark.html,

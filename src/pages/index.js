@@ -7,6 +7,8 @@ import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 import { isMobile } from 'react-device-detect'
 
+import './index.css'
+
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
