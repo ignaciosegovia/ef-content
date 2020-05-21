@@ -24,3 +24,12 @@ li {
     font-weight: 100;
     color: #373F49;
 }
+
+.container {
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.109512);
+    padding-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}

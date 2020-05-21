@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Layout from '../components/layout'
@@ -9,49 +9,74 @@ import { isMobile } from 'react-device-detect'
 import heroStyles from '../components/hero.module.css'
 import classes from './LowDownNittyGritty.module.css'
 
-class LowDownTemplate extends React.Component {
-  render() {
-    const lifeEvent = get(this.props, 'data.allContentfulLifeEvent.nodes[0]')
-    return (
-      <Layout location={this.props.location}>
-        <div style={{ background: '#fff', borderRadius: '15px', boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.109512);', paddingLeft: '1%' }}>
-          {lifeEvent.lowDown.map((data) => {
-            if (isMobile) {
-              return (
-                <Dropdown
-                  title={data.slug
-                    .split('-')
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ')}
-                >
+const LowDownTemplate = (props) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const lifeEvent = get(props, 'data.allContentfulLifeEvent.nodes[0]');
+
+  return (
+    <Layout location={props.location}>
+      <div
+        className={classes.container}
+      >
+        {isMobile ? (
+          lifeEvent.lowDown.map((data) => {
+            return (
+              <Dropdown
+                title={data.slug
+                  .split('-')
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(' ')}
+              >
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.body.childMarkdownRemark.html,
+                  }}
+                />
+              </Dropdown>
+            )
+          })
+        ) : (
+          <div
+            className="wrapper"
+            style={{ padding: '0', margin: '0', width: '100%' }}
+          >
+            <div style={{ display: 'flex' }}>
+              {lifeEvent.lowDown.map((le, index) => {
+                return (
                   <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.body.childMarkdownRemark.html,
+                    onClick={() => {
+                      setCurrentIndex(index)
                     }}
-                  />
-                </Dropdown>
-              )
-            } else {
-              return (
-                <>
-                  <div className="wrapper" style={{padding: '0', margin: '0', width: '100%'}}>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: data.body.childMarkdownRemark.html,
-                      }}
-                    />
+                    style={{width: '20%', cursor: 'pointer', marginRight: '2%'}}
+                  >
+                    <img src={le.heroImage.file.url} alt="hero" style={{width: '100%'}}/>
+                    <p style={{ color: currentIndex === index ? '#2CCD79' : '#293861', fontWeight: 'bold', margin: 0, textAlign: 'center' }}>
+                      {le.slug
+                        .split('-')
+                        .map(
+                          (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                        )
+                        .join(' ')}
+                    </p>
                   </div>
-                </>
-              )
-            }
-          })}
-        </div>
-      </Layout>
-    )
-  }
+                )
+              })}
+            </div>
+            <div
+              dangerouslySetInnerHTML={{
+                __html:
+                  lifeEvent.lowDown[currentIndex].body.childMarkdownRemark
+                    .html,
+              }}
+            />
+          </div>
+        )}
+      </div>
+    </Layout>
+  )
 }
 
-export default LowDownTemplate
+export default LowDownTemplate;
 
 export const pageQuery = graphql`
   query LowDownQuery($id: String!) {
@@ -87,6 +112,11 @@ export const pageQuery = graphql`
           body {
             childMarkdownRemark {
               html
+            }
+          }
+          heroImage {
+            file {
+              url
             }
           }
           slug
