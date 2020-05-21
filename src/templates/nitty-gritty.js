@@ -45,6 +45,7 @@ const NittyGrittyTemplate = (props) => {
                 return (
                   <div
                     onClick={() => {
+                      console.log('Changing section');
                       setCurrentIndex(index)
                     }}
                     style={{width: '20%', cursor: 'pointer', marginRight: '2%'}}

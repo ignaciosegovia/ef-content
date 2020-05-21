@@ -45,7 +45,8 @@ const LowDownTemplate = (props) => {
                 return (
                   <div
                     onClick={() => {
-                      setCurrentIndex(index)
+                      console.log('Changing section');
+                      setCurrentIndex(index);
                     }}
                     style={{width: '20%', cursor: 'pointer', marginRight: '2%'}}
                   >
