@@ -14,10 +14,9 @@ class NittyGrittyTemplate extends React.Component {
     const lifeEvent = get(this.props, 'data.allContentfulLifeEvent.nodes[0]')
     return (
       <Layout location={this.props.location}>
-        <div style={{ background: '#F8FAFF', borderRadius: '15px', boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.109512);', paddingLeft: '1%' }}>
+        <div style={{ background: '#fff', borderRadius: '15px', boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.109512);', paddingLeft: '1%' }}>
           {lifeEvent.nittyGritty.map((data) => {
             if (isMobile) {
-              console.log(data.slug)
               return (
                 <Dropdown
                   title={data.slug

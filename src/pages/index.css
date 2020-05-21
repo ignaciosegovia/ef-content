@@ -3,3 +3,8 @@
 html {
     font-family: 'Mukta';
 }
+
+img {
+    display: unset;
+    width: unset;
+}
