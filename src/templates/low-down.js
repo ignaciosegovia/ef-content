@@ -14,7 +14,7 @@ class LowDownTemplate extends React.Component {
     const lifeEvent = get(this.props, 'data.allContentfulLifeEvent.nodes[0]')
     return (
       <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
+        <div style={{ background: '#F8FAFF' }}>
           {lifeEvent.lowDown.map((data) => {
             if (isMobile) {
               return (
