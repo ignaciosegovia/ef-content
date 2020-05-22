@@ -38,14 +38,13 @@ const LowDownTemplate = (props) => {
         ) : (
           <div
             className="wrapper"
-            style={{ padding: '0', margin: '0', width: '100%' }}
+            style={{ padding: '0', margin: '0', width: '100%', backgroundColor: 'rgb(248, 250, 255)' }}
           >
             <div style={{ display: 'flex' }}>
               {lifeEvent.lowDown.map((le, index) => {
                 return (
                   <div
                     onClick={() => {
-                      console.log('Changing section');
                       setCurrentIndex(index);
                     }}
                     style={{width: '20%', cursor: 'pointer', marginRight: '2%'}}
