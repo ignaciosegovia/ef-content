@@ -33,3 +33,18 @@ li {
     padding-top: 2%;
     padding-bottom: 2%;
 }
+
+.heroContainer {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-left: -2%;
+    margin-top: -2%;
+    height: 450px;
+}
+
+.heroImg {
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    max-height: 100%;
+}

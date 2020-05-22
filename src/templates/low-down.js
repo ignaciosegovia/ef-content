@@ -3,10 +3,7 @@ import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Layout from '../components/layout'
 import Dropdown from '../components/dropdown'
-import Img from 'gatsby-image'
-
 import { isMobile } from 'react-device-detect'
-import heroStyles from '../components/hero.module.css'
 import classes from './LowDownNittyGritty.module.css'
 
 const LowDownTemplate = (props) => {
@@ -40,7 +37,10 @@ const LowDownTemplate = (props) => {
             className="wrapper"
             style={{ padding: '0', margin: '0', width: '100%'}}
           >
-            <div style={{ display: 'flex' }}>
+            <div className={classes.heroContainer}>
+              <img className={classes.heroImg} alt="hero" src={lifeEvent.image.file.url} style={{width: '100%'}} />
+            </div>
+            <div style={{ display: 'flex', marginTop: '3%' }}>
               {lifeEvent.lowDown.map((le, index) => {
                 return (
                   <div

@@ -3,15 +3,12 @@ import Img from 'gatsby-image'
 
 import styles from './hero.module.css'
 
-export default ({ data }) => (
+export default (props) => (
   <div className={styles.hero}>
     <Img
       className={styles.heroImage}
-      alt={data.name}
-      fluid={data.heroImage.fluid}
+      alt={props.name}
+      fluid={props.fluid}
     />
-    <div className={styles.heroDetails}>
-      <h3 className={styles.heroHeadline}>{data.name}</h3>
-    </div>
   </div>
 )

@@ -3,21 +3,16 @@ import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Layout from '../components/layout'
 import Dropdown from '../components/dropdown'
-import Img from 'gatsby-image'
-
 import { isMobile } from 'react-device-detect'
-import heroStyles from '../components/hero.module.css'
 import classes from './LowDownNittyGritty.module.css'
 
 const NittyGrittyTemplate = (props) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const lifeEvent = get(props, 'data.allContentfulLifeEvent.nodes[0]');
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const lifeEvent = get(props, 'data.allContentfulLifeEvent.nodes[0]')
 
   return (
     <Layout location={props.location}>
-      <div
-        className={classes.container}
-      >
+      <div className={classes.container}>
         {isMobile ? (
           lifeEvent.nittyGritty.map((data) => {
             return (
@@ -40,17 +35,35 @@ const NittyGrittyTemplate = (props) => {
             className="wrapper"
             style={{ padding: '0', margin: '0', width: '100%' }}
           >
-            <div style={{ display: 'flex' }}>
+            <div className={classes.heroContainer}>
+              <img className={classes.heroImg} alt="hero" src={lifeEvent.image.file.url} style={{width: '100%'}} />
+            </div>
+            <div style={{ display: 'flex', marginTop: '3%' }}>
               {lifeEvent.nittyGritty.map((le, index) => {
                 return (
                   <div
                     onClick={() => {
                       setCurrentIndex(index)
                     }}
-                    style={{width: '20%', cursor: 'pointer', marginRight: '2%'}}
+                    style={{
+                      width: '20%',
+                      cursor: 'pointer',
+                      marginRight: '2%',
+                    }}
                   >
-                    <img src={le.heroImage.file.url} alt="hero" style={{width: '100%'}}/>
-                    <p style={{ color: currentIndex === index ? '#2CCD79' : '#293861', fontWeight: 'bold', margin: 0, textAlign: 'center' }}>
+                    <img
+                      src={le.heroImage.file.url}
+                      alt="hero"
+                      style={{ width: '100%' }}
+                    />
+                    <p
+                      style={{
+                        color: currentIndex === index ? '#2CCD79' : '#293861',
+                        fontWeight: 'bold',
+                        margin: 0,
+                        textAlign: 'center',
+                      }}
+                    >
                       {le.slug
                         .split('-')
                         .map(
@@ -76,7 +89,7 @@ const NittyGrittyTemplate = (props) => {
   )
 }
 
-export default NittyGrittyTemplate;
+export default NittyGrittyTemplate
 
 export const pageQuery = graphql`
   query NittyGrittyQuery($id: String!) {
