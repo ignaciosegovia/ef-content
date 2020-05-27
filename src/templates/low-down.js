@@ -49,7 +49,7 @@ const LowDownTemplate = (props) => {
                     }}
                     style={{width: '20%', cursor: 'pointer', marginRight: '2%'}}
                   >
-                    <img src={le.heroImage.file.url} alt="hero" style={{width: '100%'}}/>
+                    <img src={le.heroImage? le.heroImage.file.url : '/'} alt="hero" style={{width: '100%'}}/>
                     <p style={{ color: currentIndex === index ? '#2CCD79' : '#293861', fontWeight: 'bold', margin: 0, textAlign: 'center' }}>
                       {le.slug
                         .split('-')
