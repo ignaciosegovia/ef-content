@@ -10,7 +10,7 @@ export default (props) => (
     <BrowserView>
       <div className={styles.preview}>
         <h3 className={styles.previewTitle}>
-          <Link to={`/blog/${props.lifeEvent.id}`}>{props.lifeEvent.name}</Link>
+          <Link to={`/blog/${props.lifeEvent.name}`}>{props.lifeEvent.name}</Link>
         </h3>
         <small>{props.lifeEvent.name}</small>
         {/*article.tags &&

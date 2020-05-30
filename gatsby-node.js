@@ -63,7 +63,7 @@ exports.createPages = ({ graphql, actions }) => {
         lifeEvents.forEach((le, index) => {
           if (le.lowDown !== null && le.nittyGritty !== null) {
             const a = createPage({
-              path: `/blog/${le.id}/`,
+              path: `/blog/${le.name}/`,
               component: lifeEvent,
               context: {
                 id: le.id,
@@ -71,7 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
             })
 
             const b = createPage({
-              path: `/blog/${le.id}/lowdown`,
+              path: `/blog/${le.name}/lowdown`,
               component: lowDown,
               context: {
                 id: le.id,
@@ -79,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
             })
 
             const c = createPage({
-              path: `/blog/${le.id}/nittygritty`,
+              path: `/blog/${le.name}/nittygritty`,
               component: nittyGritty,
               context: {
                 id: le.id,

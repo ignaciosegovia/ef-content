@@ -20,12 +20,12 @@ class BlogPostTemplate extends React.Component {
           <div className="wrapper">
             <h1 className="section-headline">{lifeEvent.name}</h1>
             <h3>
-              <Link to={`/blog/${lifeEvent.id}/lowdown`}>
+              <Link to={`/blog/${lifeEvent.name}/lowdown`}>
                 Low Down
               </Link>
             </h3>
             <h3>
-              <Link to={`/blog/${lifeEvent.id}/nittygritty`}>
+              <Link to={`/blog/${lifeEvent.name}/nittygritty`}>
                 Nitty Gritty
               </Link>
             </h3>
