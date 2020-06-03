@@ -7,4 +7,13 @@ html {
 img {
     display: unset;
     width: unset;
+    object-fit: cover;
+}
+
+body {
+    font-family: "brandon-grotesque", sans-serif;
+}
+
+li {
+    font-size: 14px;
 }
