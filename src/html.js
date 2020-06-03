@@ -13,6 +13,7 @@ export default function HTML(props) {
         />
         {props.headComponents}
         <link rel="stylesheet" href="https://use.typekit.net/uhg2iff.css" />
+        <base target="_blank" />
       </head>
       <body {...props.bodyAttributes}>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.8/iframeResizer.contentWindow.min.js"></script>
