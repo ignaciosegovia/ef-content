@@ -69,7 +69,7 @@ const NittyGrittyTemplate = (props) => {
                         .map(
                           (word) => word.charAt(0).toUpperCase() + word.slice(1)
                         )
-                        .join(' ')}
+                        .join(' ').replace("Nitty_gritty", '')}
                     </p>
                   </div>
                 )
