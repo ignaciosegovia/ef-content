@@ -34,9 +34,8 @@ li {
 }
 
 .heroImg {
-    width: 1180px;
+    width: 100%;
     height: 490px;
-    position: fixed;
     object-fit: cover;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -44,7 +43,6 @@ li {
 }
 
 .content {
-    margin-top: 490px;
     margin-bottom: 200px;
     padding: 3% 5%;
 }
@@ -54,9 +52,5 @@ li {
 }
 
 .cardAnimation:hover img {
-    transform: scale(1.07);
-}
-
-.cardAnimation:hover p {
-    font-size: 22px;
+    transform: scale(1.1);
 }
