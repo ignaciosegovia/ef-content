@@ -56,6 +56,7 @@ const LowDownTemplate = (props) => {
                   {lifeEvent.lowDown.map((le, index) => {
                     return (
                       <div
+                        className={classes.cardAnimation}
                         onClick={() => {
                           setCurrentIndex(index);
                         }}
