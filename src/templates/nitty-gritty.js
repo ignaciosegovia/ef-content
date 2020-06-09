@@ -55,6 +55,7 @@ const NittyGrittyTemplate = (props) => {
                                     {lifeEvent.nittyGritty.map((le, index) => {
                                         return (
                                             <div
+                                                className={classes.cardAnimation}
                                                 onClick={() => {
                                                     setCurrentIndex(index)
                                                 }}
