@@ -15,7 +15,7 @@ const LowDownTemplate = (props) => {
     if (e.target.scrollingElement.scrollTop > 50) {
       imgEl.current.style.height = '180px';
     } else {
-      imgEl.current.style.height = '490px';
+      imgEl.current.style.height = '290px';
     }
   }
 
