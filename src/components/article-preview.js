@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import {Link} from 'gatsby'
 import Img from 'gatsby-image'
-import { BrowserView, MobileView } from 'react-device-detect'
+import {BrowserView, MobileOnlyView} from 'react-device-detect'
 import Dropdown from '../components/dropdown'
 import styles from './article-preview.module.css'
 
@@ -21,8 +21,8 @@ export default (props) => (
         )) */}
       </div>
     </BrowserView>
-    <MobileView>
+    <MobileOnlyView>
       <Dropdown title={props.lifeEvent.name}></Dropdown>
-    </MobileView>
+    </MobileOnlyView>
   </>
 )

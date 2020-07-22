@@ -1,11 +1,11 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import {graphql} from 'gatsby'
 import get from 'lodash/get'
-import { Helmet } from 'react-helmet'
+import {Helmet} from 'react-helmet'
 import Hero from '../components/hero'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
-import { isMobile } from 'react-device-detect'
+import {isMobileOnly} from 'react-device-detect'
 
 import './index.css'
 
@@ -15,13 +15,14 @@ class RootIndex extends React.Component {
     const lifeEvents = get(this, 'props.data.allContentfulLifeEvent.nodes')
 
     console.log(lifeEvents)
+    console.log(isMobileOnly)
 
     return (
       <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
+        <div style={{background: '#fff'}}>
           <Helmet title={siteTitle} />
           {null && <Hero data={lifeEvents} />}
-          {!isMobile && (
+          {!isMobileOnly && (
             <div className="wrapper">
               <ul className="article-list">
                 {lifeEvents.map((le) => {
@@ -34,8 +35,8 @@ class RootIndex extends React.Component {
               </ul>
             </div>
           )}
-          {isMobile && (
-            <div className="wrapper" style={{ display: 'flex' }}>
+          {isMobileOnly && (
+            <div className="wrapper" style={{display: 'flex'}}>
               <ul
                 className="article-list"
                 style={{

@@ -3,7 +3,7 @@ import {graphql} from 'gatsby'
 import get from 'lodash/get'
 import Layout from '../components/layout'
 import Dropdown from '../components/dropdown'
-import {isMobile} from 'react-device-detect'
+import {isMobileOnly} from 'react-device-detect'
 import classes from './LowDownNittyGritty.module.css'
 
 const LowDownTemplate = (props) => {
@@ -28,7 +28,7 @@ const LowDownTemplate = (props) => {
       <div
         className={classes.container}
       >
-        {isMobile ? (
+        {isMobileOnly ? (
           lifeEvent.lowDown.map((data) => {
             return (
               <Dropdown
